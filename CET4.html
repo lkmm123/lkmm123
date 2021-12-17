@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四六级单词查询</title>
+    <link rel="stylesheet" href="cet4.css"> 
+    <script src="http://lijianhong.top/words.js"></script>
+    <script >
+        window.onload=function(){
+            var myWord={
+                en:[],
+                chn:[],
+                phonetic:[]
+            }
+            var flag={
+                enflag:[],
+                chnflag:[],
+                phoneticflag:[],
+                wholeflag:[]
+            }
+            for(var i=0;i<en6.length;i++){
+                flag.wholeflag[i]=en6[i];}
+                for(var j=0;j<flag.wholeflag.length;j++){
+               flag.enflag[j]=flag.wholeflag[j].split("/")[0];
+               flag.chnflag[j]=flag.wholeflag[j].split(".")[1];
+               flag.phoneticflag[j]=flag.wholeflag[j].split("/")[1];
+            }
+            for(var i=0;i<en6.length;i++){
+                myWord.en[i]=flag.enflag[i];
+                myWord.chn[i]=flag.chnflag[i];
+                myWord.phonetic[i]=flag.phoneticflag[i];}
+                menuDom=document.querySelector("div#menu");
+                inputDom=document.querySelector("input#wordinput");
+                searchDom=document.querySelector("input#search");
+                writeDom=document.querySelector("input#write");
+                submitDom=document.querySelector("input#submit");
+                transDom=document.querySelector("div#translation");
+                wordDom=document.querySelector("span#word");
+                transform=document.querySelector("span#trans");
+                tarDom=document.querySelector("span#target");
+                nextDom=document.querySelector("input#next");
+                preDom=document.querySelector("input#pre");
+                rebackDom=document.querySelector("input#reback");
+                selectDom=document.querySelector("select#selectID");
+                bgDom=document.querySelector("div#bg");
+                writewordsDom=document.querySelector("span#writewords");
+                readDom=document.querySelector("input#read");
+                var index=0;
+                wordDom.textContent=" /"+myWord.phonetic[index]+"/ ";//音标
+                transform.textContent=myWord.chn[index];//翻译
+                tarDom.textContent=myWord.en[index]+" ";//单词 
+                writewordsDom.textContent=tarDom.textContent;
+                inputDom.onclick=function(){
+                inputDom.value="";
+                selectDom.className=("tomany");
+                } 
+                rebackDom.onclick=function(){
+                    wordDom.className=("tomany");
+                    writeDom.value=("默写");
+                    inputDom.value=("请输入您要查询的单词");
+                    wordDom.textContent=" /"+myWord.phonetic[index]+"/ ";//音标
+                    transform.textContent=myWord.chn[index];//翻译
+                    tarDom.textContent=myWord.en[index]+" ";//单词 
+                }
+            //程序崩溃无法加载！
+            searchDom.onclick=function(){
+                for(var i=0;i<en6.length;i++){
+                    if(inputDom.value===myWord.en[i]){
+                        tarDom.textContent=myWord.en[i]+" ";
+                        wordDom.textContent=" /"+myWord.phonetic[i]+"/ ";
+                        transform.textContent=myWord.chn[i];
+                        break;
+                    }
+                }
+            }
+            var col=["#FF8800","#66CDAA","#BDB76B","#B088FF","#E6E6FA",
+            "#FFE4B5","#B8860B ","#808080"];
+            var n=0;
+            preDom.onclick=function(){
+                if(index--<=0){
+                    index=0;
+                }
+           if(n<0){
+               n=col.length;
+           }
+           bgDom.style.background=col[n];
+            n--;
+            wordDom.textContent=" /"+myWord.phonetic[index]+"/ ";//音标
+            transform.textContent=myWord.chn[index];//翻译
+            tarDom.textContent=myWord.en[index]+" ";//单词
+            writewordsDom.textContent=tarDom.textContent;
+            }
+            nextDom.onclick=function(){
+                if(index++>=en6.length){
+                    index=en6.length;
+                }
+                if(n>col.length-1){
+                n=0;
+            }
+            bgDom.style.background=col[n];
+            n++;
+            wordDom.textContent=" /"+myWord.phonetic[index]+"/ ";//音标
+            transform.textContent=myWord.chn[index];//翻译
+            tarDom.textContent=myWord.en[index]+" ";//单词
+            writewordsDom.textContent=tarDom.textContent;
+            } 
+            writeDom.onclick=function(){ 
+                writeDom.value="";
+                wordDom.textContent="";
+                transform.textContent="";
+                tarDom.textContent="";
+            }         
+            submitDom.onclick=function(){ 
+            if(writewordsDom.textContent===(writeDom.value+" ")){
+                tarDom.textContent="";
+                transform.textContent="";
+                wordDom.textContent="恭喜你答对了！";
+            }else{
+                tarDom.textContent="";
+                transform.textContent="";
+                wordDom.textContent="很遗憾答错了再试一次吧！";
+            }
+            } 
+            for(var i=0;i<en6.length;i++){
+                var element=document.createElement("span");
+                element.textContent=en6[i];
+                transDom.appendChild(element);
+            }
+            var rendint=[];
+            readDom.onclick=function(){
+            transDom.textContent='';
+            for(var a=0;a<10;a++){
+            var rengInt=Math.floor(Math.random()*en6.length)
+            rendint[a]=rengInt;
+            var elements=document.createElement("span");
+                elements.textContent=en6[rendint[a]]+"\n"+"\n";
+            transDom.appendChild(elements);
+        }
+    }
+            for(var k=0;k<myWord.length;k++){
+            while(inputDom.value in myWord.chn[k]) {
+            var option = document.createElement("option");
+            option.appendChild(document.createTextNode(myWord.chn[k]));
+            option.setAttribute("value", myWord.chn[k]);
+            selectDom.appendChild(option);}
+            }
+    }
+    </script>
+</head>
+<body>
+    <div id="menu"><input type="text" value="请输入您要查询的单词" id="wordinput">
+         <input type="button" value="搜索" id="search">
+         <input type="text" value="默写" id="write">
+        <input type="button" value="提交" id="submit">
+        <input type="text" value="中文" id="chinese">
+    <input type="button" id="pre" value="上一个">
+    <input type="button" id="next" value="下一个">
+    <input type="button" id="read" value="读一读">
+    <input type="button" id="reback" value="我再看看">
+    </div>
+         <div id="bg"><span id="target">音标</span>
+         <span id="word">单词</span><br><br>
+         <span id="writewords">looklookme</span>
+         <br><br>
+         <span id="trans">翻译</span><br><br><br>
+         <span id="myname" style="font-size: 1.5em;color:chocolate">19计算机二班20193021乐康明</span>
+    </div>
+    <div id="translation">单词大全<br></div>
+</body>
+</html>

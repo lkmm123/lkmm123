@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    justify-items: center;
+}
+body{
+    background-color: cornsilk;
+}
+div{
+    border: 1px solid blue;
+    position: relative;
+    width: 400px;
+    height: 200px;
+    margin: 20px;
+    background:cornsilk;
+    left: 37%;
+    text-align: center;
+}
+span#menu span{
+    text-align: center;
+    line-height: 250px;
+    font-size: 2em;
+    color: red;
+}
+div input#search{
+    display: flex;
+    position: absolute;
+    right: 30%;
+    top: 10px;
+    background:darkgrey;
+    color:white;
+}
+.many{
+    position: absolute;
+    left: 20%;
+    top: 35px;
+    width: 160px;
+    height: 100px;
+    visibility: hidden;
+}
+.tomany{
+    position: absolute;
+    left: 30%;
+    top: 35px;
+    width: 160px;
+    height: 100px;
+    z-index: 20;
+}
+div input#wordinput{
+    display: flex;
+    position:absolute ;
+    right: 40%;
+    top: 10px;
+    height: 20px;
+}
+div input#write{
+    display: flex;
+    position: absolute;
+    right: 40%;
+    top: 60px;
+    height: 20px;
+}
+div input#chinese{
+    display: flex;
+    position: absolute;
+    right: 40%;
+    top: 92px;
+    height: 20px;
+    display: none;
+}
+div input#submit{
+    display: flex;
+    position:absolute ;
+    right: 30%;
+    top: 60px;
+    height: 23px;
+    background-color: thistle;
+    color: white;
+}
+div#translation{
+    display: flexbox;
+    overflow-y:auto ;
+    background-color: wheat;
+    height: 300px;
+}
+div input#pre{
+    position: absolute;
+    left: 20%;
+    bottom: 20%;
+}
+div input#next{
+   position: absolute;
+   right: 50%;
+   bottom: 20%;
+}
+div input#reback{
+    position: absolute;
+    right: 5%;
+    bottom: 20%;
+    width: 70px;
+}
+div input#read{
+    position: absolute;
+    bottom: 20%;
+    right: 30%;
+    width: 50px;
+}
+div span#writewords{
+    visibility: hidden;
+}
